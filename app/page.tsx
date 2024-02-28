@@ -1,12 +1,10 @@
-import { FormPF } from "./components/Form";
-import Moment from "moment";
-import { Header } from "./components/Header";
+import { FormPF } from "./components/Form/Form";
+import { Header } from "./components/Header/Header";
 
 export default function Home() {
-  Moment.locale("pt-br");
   return (
     <>
-      <Header />
+      <Header  title="Cadastro de pessoas físicas"/>
       <main>
         <FormPF />
       </main>

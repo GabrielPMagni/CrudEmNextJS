@@ -1,31 +1,32 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import Input from "./Input";
-import { api, viaCep } from "../helpers/api";
+import Input from "../Input";
+import { api, viaCep } from "../../helpers/api";
 import Swal from "sweetalert2";
+import styles from './Form.module.css';
 
 export const FormPF = () => {
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    const [birthdate, setBirthdate] = useState("");
-    const [maritalStatus, setMaritalStatus] = useState("");
-    const [birthplace, setBirthplace] = useState("");
-    const [cpf, setCpf] = useState("");
-    const [rg, setRg] = useState("");
-    const [occupation, setOccupation] = useState("");
-    const [spouseName, setSpouseName] = useState("");
-    const [spouseCpf, setSpouseCpf] = useState("");
-    const [address, setAddress] = useState("");
-    const [neighborhood, setNeighborhood] = useState("");
-    const [city, setCity] = useState("");
-    const [zipCode, setZipCode] = useState("");
-    const [observation, setObservation] = useState("");
-    const [purchaseDate, setPurchaseDate] = useState("");
+    const [name, setName] = useState<string>();
+    const [surname, setSurname] = useState<string>();
+    const [email, setEmail] = useState<string>();
+    const [password, setPassword] = useState<string>();
+    const [confirmPassword, setConfirmPassword] = useState<string>();
+    const [phone, setPhone] = useState<string>();
+    const [birthdate, setBirthdate] = useState<string>();
+    const [maritalStatus, setMaritalStatus] = useState<string>();
+    const [birthplace, setBirthplace] = useState<string>();
+    const [cpf, setCpf] = useState<string>();
+    const [rg, setRg] = useState<string>();
+    const [occupation, setOccupation] = useState<string>();
+    const [spouseName, setSpouseName] = useState<string>();
+    const [spouseCpf, setSpouseCpf] = useState<string>();
+    const [address, setAddress] = useState<string>();
+    const [neighborhood, setNeighborhood] = useState<string>();
+    const [city, setCity] = useState<string>();
+    const [zipCode, setZipCode] = useState<string>();
+    const [observation, setObservation] = useState<string>();
+    const [purchaseDate, setPurchaseDate] = useState<string>();
 
     const maritalStatusOptions = [
         { value: "Solteiro", label: "Solteiro" },
@@ -45,7 +46,7 @@ export const FormPF = () => {
             });
             return false;
         }
-        if (cpf.length !== 11 || isNaN(Number(cpf))) {
+        if (cpf && cpf.length !== 14) {
             Swal.fire({
                 title: 'Erro!',
                 text: 'CPF inválido',
@@ -58,8 +59,8 @@ export const FormPF = () => {
     }
 
     useEffect(() => {
-        if (zipCode.length === 8) {
-            viaCep.get(`${zipCode}/json`)
+        if (zipCode && zipCode.length === 9) {
+            viaCep.get(`${zipCode.replaceAll(/[^\d]/g, '')}/json`)
                 .then((response) => {
                     const data = response.data;
                     setAddress(data.logradouro);
@@ -121,7 +122,7 @@ export const FormPF = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit}>
             <div className="input-container">
                 <div className={'input-group'}>
                     <Input

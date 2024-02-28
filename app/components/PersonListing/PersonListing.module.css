@@ -1,0 +1,23 @@
+.scrollableContainer {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.contentsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contentsTable th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: left;
+}
+
+.contentsTable td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}

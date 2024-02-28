@@ -4,14 +4,14 @@ interface InputProps {
     label: string;
     type: string;
     placeholder?: string;
-    value: string;
+    value: string | undefined;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     id: string;
     required: boolean;
     mask?: string;
 }
 
-export default function Input({ label, onChange, placeholder, type, value, id, required, mask = '' }: InputProps) {
+export default function Input({ label, onChange, placeholder, type, value = '', id, required, mask = '' }: InputProps) {
     return (
         <>
             <label htmlFor={id}>{label}{required && '*'}</label>
