@@ -99,7 +99,7 @@ export const FormPF = () => {
             observation,
             purchaseDate,
         };
-        api.post("/pessoa-fisica", data)
+        api.post("/persons", data)
             .then((response) => {
                 Swal.fire({
                     title: 'Sucesso!',
@@ -112,7 +112,7 @@ export const FormPF = () => {
             .catch((error) => {
                 Swal.fire({
                     title: 'Erro!',
-                    text: 'Falha ao cadastrar pessoa física',
+                    text: error.response?.data?.message[0] || 'Falha ao cadastrar pessoa física',
                     icon: 'error',
                     confirmButtonText: 'OK'
                 });
@@ -122,7 +122,6 @@ export const FormPF = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Cadastro de Pessoa Física</h2>
             <div className="input-container">
                 <div className={'input-group'}>
                     <Input
@@ -181,6 +180,7 @@ export const FormPF = () => {
                 </div>
                 <div className={'input-group'}>
                     <Input
+                        mask="(99) 99999-9999"
                         label="Telefone"
                         type="tel"
                         id="phone"
@@ -230,6 +230,7 @@ export const FormPF = () => {
                         </div>
                         <div className={'input-group'}>
                             <Input
+                                mask="999.999.999-99"
                                 label="CPF do Cônjuge"
                                 type="text"
                                 id="spouseCpf"
@@ -254,6 +255,7 @@ export const FormPF = () => {
                 </div>
                 <div className={'input-group'}>
                     <Input
+                        mask="999.999.999-99"
                         label="CPF"
                         type="text"
                         id="cpf"
@@ -287,6 +289,7 @@ export const FormPF = () => {
                 </div>
                 <div className={'input-group'}>
                     <Input
+                        mask="99999-999"
                         label="CEP"
                         type="text"
                         id="zipCode"
